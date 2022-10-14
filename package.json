@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "sb": "start-storybook -p 6006",
+    "build-sb": "build-storybook",
+    "deploy-sb": "build-storybook && git subtree push --prefix storybook-static/ origin gh-pages"
   },
   "dependencies": {
     "next": "12.3.1",
