@@ -1,11 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 import CountUp from './CountUp';
 
 type Props = {};
 
 const Landing = (props: Props) => {
+  const [sawoo, setSawoo] = useState(137);
+  const [gamsaInsa, setGamsaInsa] = useState(3127);
+
   return (
     <LandingWrapper>
       <Video autoPlay loop muted playsInline>
@@ -19,7 +22,7 @@ const Landing = (props: Props) => {
           <Description>
             지금까지{' '}
             <CountUp
-              end={137}
+              end={sawoo}
               fontSize={2.7}
               fontWeight={700}
               color='#ecff46'
@@ -28,7 +31,7 @@ const Landing = (props: Props) => {
           </Description>
           <Description>
             <CountUp
-              end={3218}
+              end={gamsaInsa}
               fontSize={2.7}
               fontWeight={700}
               color='#ecff46'
