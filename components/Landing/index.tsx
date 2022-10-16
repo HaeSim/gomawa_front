@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from '@emotion/styled';
 import React from 'react';
+import CountUp from './CountUp';
 
 type Props = {};
 
@@ -15,8 +16,25 @@ const Landing = (props: Props) => {
       <TextWrapper>
         <Title>The Great Workplace is up to You</Title>
         <DescriptionWrapper>
-          <Description>지금까지 0 명의 사우분들께</Description>
-          <Description>0 개의 감사 인사가 전달되었습니다</Description>
+          <Description>
+            지금까지{' '}
+            <CountUp
+              end={137}
+              fontSize={2.7}
+              fontWeight={700}
+              color='#ecff46'
+            />{' '}
+            명의 사우분들께
+          </Description>
+          <Description>
+            <CountUp
+              end={3218}
+              fontSize={2.7}
+              fontWeight={700}
+              color='#ecff46'
+            />{' '}
+            개의 감사 인사가 전달되었습니다
+          </Description>
         </DescriptionWrapper>
       </TextWrapper>
     </LandingWrapper>
