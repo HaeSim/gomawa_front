@@ -15,7 +15,7 @@ const NavBar = ({ children }: NavBarProps) => {
           overflow: 'hidden',
           display: 'inline-block',
           height: '70px',
-          padding: '20px 20px 20px 20px',
+          padding: '10px 20px',
         }}
       >
         <img src='/logo.png' alt='logo' />
@@ -32,6 +32,7 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
+  box-sizing: border-box;
   z-index: 9999;
 `;
 
