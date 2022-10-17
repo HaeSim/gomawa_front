@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import Layout from 'components/layout/Layout';
+import Landing from 'components/Landing';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +13,9 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Layout>Hello</Layout>
+      <Layout>
+        <Landing />
+      </Layout>
     </div>
   );
 };
