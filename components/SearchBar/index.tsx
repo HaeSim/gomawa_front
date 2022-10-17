@@ -58,6 +58,7 @@ const Container = styled.div<{ isFocus: boolean; hoverColor: string }>`
   padding-left: 8px;
   padding-right: 18px;
   font-size: 1rem;
+  background-color: #ffffff;
 
   transition: border 150ms ease-in-out;
   border: 2px solid ${(props) => (props.isFocus ? props.hoverColor : '#eee')};
