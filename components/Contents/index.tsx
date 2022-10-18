@@ -15,6 +15,7 @@ const Contents = (props: Props) => {
               title={v.title}
               createdDate={v.createdDate}
               background={v.background}
+              rotate={v.rotate}
             >
               {v.children}
             </Card>
@@ -41,6 +42,7 @@ const Grid = styled.div`
   display: grid;
   padding-top: 8rem;
   gap: 1rem;
+  background-color: beige;
 
   grid-template-columns: repeat(5, 1fr);
 
