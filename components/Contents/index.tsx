@@ -1,28 +1,42 @@
 import styled from '@emotion/styled';
 import Card, { tempCardData } from 'components/Card';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 import React from 'react';
+import { getNotionCards } from 'pages/api/notion';
+
+const queryClient = new QueryClient();
 
 type Props = {};
 
 const Contents = (props: Props) => {
+  const { isLoading, error, data } = useQuery(['notionData'], getNotionCards);
+
+  console.log(isLoading, error, data);
+
   return (
-    <ContentsWrapper>
-      <Grid>
-        {tempCardData.map((v) => {
-          return (
-            <Card
-              key={v.title}
-              title={v.title}
-              createdDate={v.createdDate}
-              background={v.background}
-              rotate={v.rotate}
-            >
-              {v.children}
-            </Card>
-          );
-        })}
-      </Grid>
-    </ContentsWrapper>
+    <QueryClientProvider client={queryClient}>
+      <ContentsWrapper>
+        <Grid>
+          {tempCardData.map((v) => {
+            return (
+              <Card
+                key={v.title}
+                title={v.title}
+                createdDate={v.createdDate}
+                background={v.background}
+                rotate={v.rotate}
+              >
+                {v.children}
+              </Card>
+            );
+          })}
+        </Grid>
+      </ContentsWrapper>
+    </QueryClientProvider>
   );
 };
 
