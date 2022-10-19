@@ -11,6 +11,7 @@ export const decorators = [
     <ThemeProvider theme={theme}>
       <Global styles={globalStyles} />
       <Story />
+      <div id='modal-root' />
     </ThemeProvider>
   ),
 ];
