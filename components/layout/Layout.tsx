@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from '@emotion/styled';
 import SearchBar from 'components/SearchBar';
 import NavBar from 'components/NavBar';
+import Footer from './Footer';
 type Props = {
   children: React.ReactNode;
 };
@@ -20,7 +21,7 @@ const Layout = ({ children }: Props) => {
         </SearchBarWrapper>
       </NavBar>
       <Main>{children}</Main>
-      <footer style={{ border: '1px solid blue', height: 150 }}>Footer</footer>
+      <Footer />
     </Container>
   );
 };
