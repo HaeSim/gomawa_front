@@ -44,6 +44,7 @@ export default Contents;
 
 const ContentsWrapper = styled.section`
   position: relative;
+  min-height: 100vh;
   height: fit-content;
 
   background-color: white;
