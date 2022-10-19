@@ -84,6 +84,10 @@ const TextWrapper = styled.div`
 const Title = styled.h1`
   font-size: 1.2rem;
   color: white;
+
+  @media (max-width: ${(props) => props.theme.bp.md}) {
+    font-size: 0.9rem;
+  }
 `;
 
 const DescriptionWrapper = styled.div`
@@ -97,6 +101,9 @@ const DescriptionWrapper = styled.div`
 const Description = styled.h2`
   font-size: 2.5rem;
   color: white;
+  @media (max-width: ${(props) => props.theme.bp.md}) {
+    font-size: 1.3rem;
+  }
 `;
 
 export default Landing;
