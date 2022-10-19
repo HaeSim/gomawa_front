@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import Layout from 'components/layout/Layout';
+import Layout from 'components/layout/Index';
 import Landing from 'components/Landing';
 import Contents from 'components/Contents';
 

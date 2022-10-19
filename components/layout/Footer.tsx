@@ -11,7 +11,7 @@ const Footer = () => {
           <Logo>
             <p>고.마.워</p>
           </Logo>
-          <FooterSns></FooterSns>
+          {/* <FooterSns></FooterSns> */}
         </LogoAndSns>
         <FooterDetail>
           <p>
@@ -75,7 +75,7 @@ const FooterLayout = styled.footer`
   align-items: center;
 
   padding: 71px 0px;
-  gap: 50px;
+  gap: 3rem;
 
   background-color: #da2a1c;
 
@@ -88,7 +88,7 @@ const FooterLeft = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 1.25rem;
 
   @media (max-width: ${(props) => props.theme.bp.lg}) {
     justify-content: center;
@@ -101,13 +101,13 @@ const LogoAndSns = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
 const Logo = styled.div`
   p {
     font-weight: 600;
-    font-size: 28px;
+    font-size: 2rem;
     color: white;
   }
 `;
@@ -115,13 +115,13 @@ const Logo = styled.div`
 const FooterSns = styled.div`
   > a {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 0.8rem;
     color: white;
   }
 `;
 
 const SubmitWrapper = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   color: rgba(235, 235, 245, 0.7);
 `;
 
@@ -129,12 +129,12 @@ const FooterRight = styled.div`
   display: flex;
   flex-direction: column;
   text-align: right;
-  gap: 15px;
+  gap: 1rem;
 
   > ul {
     display: flex;
     justify-content: flex-end;
-    gap: 20px;
+    gap: 1.25rem;
 
     color: white;
   }
@@ -148,7 +148,7 @@ const FooterRight = styled.div`
 
 const FooterDetail = styled.div`
   > p {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 160%;
     color: #fff;
@@ -156,10 +156,16 @@ const FooterDetail = styled.div`
       color: rgba(235, 235, 245, 0.7);
     }
   }
+
+  @media (max-width: ${(props) => props.theme.bp.md}) {
+    > p {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 const UtilLink = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
 
   cursor: pointer;
