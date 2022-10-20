@@ -13,9 +13,9 @@ const queryClient = new QueryClient();
 type Props = {};
 
 const Contents = (props: Props) => {
-  const { isLoading, error, data } = useQuery(['notionData'], getNotionCards);
-
-  console.log(isLoading, error, data);
+  const { isLoading, error, data } = useQuery(['notionData', ''], (context) =>
+    getNotionCards(context),
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -26,11 +26,25 @@ const Contents = (props: Props) => {
               <Card
                 key={v.title}
                 title={v.title}
-                createdDate={v.createdDate}
+                createAt={v.createdDate}
                 background={v.background}
                 rotate={v.rotate}
               >
                 {v.children}
+              </Card>
+            );
+          })}
+          {data?.map((v) => {
+            return (
+              <Card
+                key={v.id}
+                title={v.title}
+                createAt={v.createAt}
+                background={v.background}
+                rotate={v.rotate}
+                from={v.from}
+              >
+                {v.description}
               </Card>
             );
           })}

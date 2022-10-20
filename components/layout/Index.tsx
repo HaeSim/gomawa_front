@@ -4,12 +4,29 @@ import SearchBar from 'components/SearchBar';
 import NavBar from 'components/NavBar';
 import Footer from './Footer';
 import { throttle } from 'lodash-es';
+import { useQuery } from '@tanstack/react-query';
+import { getNotionCards } from 'pages/api/notion';
+
 type Props = {
   children: React.ReactNode;
 };
 
 const Layout = ({ children }: Props) => {
   const [value, setValue] = useState('');
+
+  const { refetch } = useQuery(
+    ['notionData', value],
+    (context) => getNotionCards(context),
+    {
+      refetchOnWindowFocus: false,
+      enabled: false,
+      onSuccess: (data) => console.log('onSuccess : ', data),
+    },
+  );
+
+  const handleClick = () => {
+    refetch();
+  };
 
   const layoutRef = useRef<HTMLDivElement>(null);
 
@@ -69,6 +86,7 @@ const Layout = ({ children }: Props) => {
           <SearchBar
             value={value}
             handleChange={(e) => setValue(e.target.value)}
+            handleClick={handleClick}
           />
         </SearchBarWrapper>
       </NavBar>
