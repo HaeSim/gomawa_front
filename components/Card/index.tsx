@@ -7,6 +7,7 @@ export interface CardProps {
   createdDate: string;
   rotate: number;
   background?: string;
+  onClick?: any;
 }
 
 const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
@@ -15,7 +16,7 @@ export const tempCardData = [
     title: '안녕하세요오오오오오옹',
     createdDate: '2022년 10월 17일',
     background: '#f6c2d9',
-    rotate: 2,
+    rotate: 0,
     children:
       '오언은 내가 물건을 잃어버리는 방식에 관해, 잃어버리는 행위를 내 나름의 예술로 승화해나가는 방식에 관해 이야기하면서 나를 놀리곤 했다.',
   },
@@ -23,7 +24,7 @@ export const tempCardData = [
     title: '이건 테스트 데이터에요',
     createdDate: '2022년 10월 18일',
     background: '#fff69b',
-    rotate: -1,
+    rotate: 0,
     children:
       '오언은 그렇게 물었고, 주차권을 잃어버리는 여자라는 것이 그날 밤 나에 관해 알게 된 가장 좋은 정보라는 듯이 웃었다.',
   },
@@ -31,7 +32,7 @@ export const tempCardData = [
     title: '마이클스 부인이세요?',
     createdDate: '2022년 10월 17일',
     background: '#bcdfc9',
-    rotate: 3,
+    rotate: 0,
     children:
       '주차권은 확실히 잃어버렸다. 나는 렌트한 볼보를 구석구석 샅샅이 뒤졌고, 탄 적도 없는 오언의 멋진 스포츠카 내부도, 전체를 다 둘러보는 게 불가능한 주차장 회색 바닥도 열심히 뒤졌다.',
   },
@@ -39,7 +40,7 @@ export const tempCardData = [
     title: '이건 제목입니다.',
     createdDate: '2022년 10월 17일',
     background: '#a1c8e9',
-    rotate: 1,
+    rotate: 0,
     children:
       '텔레비전에서는 그 사람이 주로 경찰서 소속 목사이거나 소방관이거나 제복을 입은 장교다. 하지만 내가 문을 열었을 때, 이제 나의 세상이 완전히 바뀌리라는 것을 알게 됐을 때,',
   },
@@ -47,7 +48,7 @@ export const tempCardData = [
     title: '괜찮은가요?',
     createdDate: '2022년 10월 17일',
     background: '#e4dae2',
-    rotate: -1,
+    rotate: 0,
     children:
       '여자아이가 물었고, 나는 조금 주저했다. 누군가가 나에게 그 사람이 맞느냐고 물을 때면 자주 나오는 반응이었다.그 사람들이 묻는 사람은 나이기도 했고, 내가 아니기도 했으니까.',
   },
@@ -58,15 +59,18 @@ const Card = ({
   createdDate,
   background = '#fff69b',
   rotate,
+  onClick,
   children,
 }: CardProps) => {
   return (
     <Container background={background} rotate={rotate}>
       <Body>
-        <Title>{title}</Title>
-        <ContentWrapper>
-          <Content>{children}</Content>
-        </ContentWrapper>
+        <ClickWrapper onClick={onClick}>
+          <Title>{title}</Title>
+          <ContentWrapper>
+            <Content>{children}</Content>
+          </ContentWrapper>
+        </ClickWrapper>
         <SubInfo>
           <span>{createdDate}</span>
         </SubInfo>
@@ -94,8 +98,6 @@ const Container = styled.div<{ background?: string; rotate: number }>`
   background-color: ${(props) =>
     props.background ? props.background : '#ffffff'};
 
-  cursor: pointer;
-
   transform: rotate(${(props) => props.rotate}deg);
   &:hover {
     transform: rotate(0);
@@ -107,6 +109,10 @@ const Body = styled.div`
   display: flex;
   flex: 1 1 0%;
   flex-direction: column;
+`;
+
+const ClickWrapper = styled.a`
+  cursor: pointer;
 `;
 
 const Title = styled.h3`
