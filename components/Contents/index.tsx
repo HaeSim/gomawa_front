@@ -1,14 +1,10 @@
 import styled from '@emotion/styled';
 import Card, { tempCardData } from 'components/Card';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState, useEffect } from 'react';
 import { getNotionCards } from 'pages/api/notion';
-
-const queryClient = new QueryClient();
+import useModal from 'Hooks/useModal';
+import Modal from 'components/Modal';
 
 type Props = {};
 
@@ -16,25 +12,24 @@ const Contents = (props: Props) => {
   const { isLoading, error, data } = useQuery(['notionData', ''], (context) =>
     getNotionCards(context),
   );
+  
+  const [open, openModal, closeModal] = useModal();
+  const [cardIdx, setCardIdx] = useState(-1);
 
+  useEffect(() => {
+    if (cardIdx > -1) {
+      openModal();
+    }
+  }, [cardIdx]);
+
+  if (isLoading) return <div>Loading..</div>;
   return (
-    <QueryClientProvider client={queryClient}>
-      <ContentsWrapper>
-        <Grid>
-          {tempCardData.map((v) => {
-            return (
-              <Card
-                key={v.title}
-                title={v.title}
-                createAt={v.createdDate}
-                background={v.background}
-                rotate={v.rotate}
-              >
-                {v.children}
-              </Card>
-            );
-          })}
-          {data?.map((v) => {
+    <ContentsWrapper>
+      <Modal open={open} onClose={closeModal}>
+        {open && data[cardIdx].description}
+      </Modal>
+      <Grid>
+        {data?.map((v, idx) => {
             return (
               <Card
                 key={v.id}
@@ -43,14 +38,15 @@ const Contents = (props: Props) => {
                 background={v.background}
                 rotate={v.rotate}
                 from={v.from}
+                onClick={() => { setCardIdx(idx); }}
               >
                 {v.description}
               </Card>
             );
           })}
-        </Grid>
-      </ContentsWrapper>
-    </QueryClientProvider>
+      </Grid>
+    </ContentsWrapper>
+
   );
 };
 
