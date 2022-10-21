@@ -9,6 +9,7 @@ export interface CardProps {
   background?: string;
   onClick?: any;
   from?: string;
+  to?: string;
 }
 
 export const tempCardData = [
@@ -61,13 +62,14 @@ const Card = ({
   rotate,
   onClick,
   children,
-  from = 'joonsuk',
+  from = '익명',
+  to = '찌리리공',
 }: CardProps) => {
   return (
     <Container background={background} rotate={rotate}>
       <Body>
         <ClickWrapper onClick={onClick}>
-          <Title>{title}</Title>
+          <Title>{title === undefined ? `${to}님, 감사합니다!` : title}</Title>
           <ContentWrapper>
             <Content>{children}</Content>
           </ContentWrapper>

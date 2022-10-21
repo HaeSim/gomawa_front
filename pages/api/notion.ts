@@ -31,7 +31,7 @@ export const getNotionCards = async ({
           description: richTextCombine(description),
           from: richTextCombine(from),
           reveal: reveal.checkbox,
-          title: title.title[0].plain_text,
+          title: title.title[0]?.plain_text,
           to: richTextCombine(to),
         };
       },

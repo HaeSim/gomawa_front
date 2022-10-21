@@ -30,6 +30,7 @@ const Contents = (props: Props) => {
         {open && data[cardIdx].description}
       </Modal>
       <Grid>
+        {console.log('check :', data)}
         {data?.map((v, idx) => {
           const randomNumber = Math.random();
           return (
@@ -44,6 +45,7 @@ const Contents = (props: Props) => {
                 4
               }
               from={v.from}
+              to={v.to}
               onClick={() => {
                 setCardIdx(idx);
               }}
