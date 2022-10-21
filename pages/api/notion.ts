@@ -28,11 +28,11 @@ export const getNotionCards = async ({
         return {
           id: item.id,
           createAt: getFullYmdStr(createAt.created_time),
-          description: description.rich_text[0].plain_text,
-          from: from.rich_text[0].plain_text,
+          description: richTextCombine(description),
+          from: richTextCombine(from),
           reveal: reveal.checkbox,
           title: title.title[0].plain_text,
-          to: to.rich_text[0].plain_text,
+          to: richTextCombine(to),
         };
       },
     );
@@ -40,4 +40,11 @@ export const getNotionCards = async ({
   } catch (error) {
     return error;
   }
+};
+
+const richTextCombine = ({ rich_text }: RichText) => {
+  const plainTextArray = rich_text.map((item: { plain_text: string }) => {
+    return item.plain_text;
+  });
+  return plainTextArray.join();
 };

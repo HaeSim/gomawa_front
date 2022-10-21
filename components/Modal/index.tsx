@@ -24,7 +24,9 @@ const Modal = ({
           <button type='button' onClick={onClose}>
             Close Modal
           </button>
-          {children}
+          <ContentWrapper>
+            <Content>{children}</Content>
+          </ContentWrapper>
         </ModalBody>
       </Container>
     </ModalPortal>
@@ -33,8 +35,7 @@ const Modal = ({
 
 const Container = styled.div`
   position: fixed;
-  z-index: 9999;
-  inset: 0px; // top right bottom left props
+  inset: 0px;
 `;
 
 const BackDrop = styled.div`
@@ -62,6 +63,26 @@ const ModalBody = styled.div<{ backgroundColor: string }>`
   box-shadow: rgb(0 0 0 / 20%) 0px 11px 15px -7px,
     rgb(0 0 0 / 14%) 0px 24px 38px 3px, rgb(0 0 0 / 12%) 0px 9px 46px 8px;
   padding: 32px;
+`;
+
+const ContentWrapper = styled.div`
+  flex: 1 1 0%;
+`;
+
+const Content = styled.p`
+  margin: 0px 0px 1.5rem;
+  white-space: pre-line;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  /* height: 5rem; */
+  display: -webkit-box;
+  -webkit-line-clamp: 5; // 5번째 줄부터 ellipsis 적용
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #495057;
 `;
 
 export default Modal;

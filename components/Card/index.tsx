@@ -11,7 +11,6 @@ export interface CardProps {
   from?: string;
 }
 
-const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
 export const tempCardData = [
   {
     title: '안녕하세요오오오오오옹',
@@ -135,6 +134,7 @@ const ContentWrapper = styled.div`
 
 const Content = styled.p`
   margin: 0px 0px 1.5rem;
+  white-space: pre-line;
   word-break: break-word;
   overflow-wrap: break-word;
   font-size: 0.875rem;

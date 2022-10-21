@@ -7,12 +7,13 @@ import useModal from 'Hooks/useModal';
 import Modal from 'components/Modal';
 
 type Props = {};
+const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
 
 const Contents = (props: Props) => {
   const { isLoading, error, data } = useQuery(['notionData', ''], (context) =>
     getNotionCards(context),
   );
-  
+
   const [open, openModal, closeModal] = useModal();
   const [cardIdx, setCardIdx] = useState(-1);
 
@@ -20,7 +21,7 @@ const Contents = (props: Props) => {
     if (cardIdx > -1) {
       openModal();
     }
-  }, [cardIdx]);
+  }, [cardIdx, openModal]);
 
   if (isLoading) return <div>Loading..</div>;
   return (
@@ -30,23 +31,29 @@ const Contents = (props: Props) => {
       </Modal>
       <Grid>
         {data?.map((v, idx) => {
-            return (
-              <Card
-                key={v.id}
-                title={v.title}
-                createAt={v.createAt}
-                background={v.background}
-                rotate={v.rotate}
-                from={v.from}
-                onClick={() => { setCardIdx(idx); }}
-              >
-                {v.description}
-              </Card>
-            );
-          })}
+          const randomNumber = Math.random();
+          return (
+            <Card
+              key={v.id}
+              title={v.title}
+              createAt={v.createAt}
+              background={postItColorSet[idx % 4]}
+              rotate={
+                ((randomNumber < 0.5 ? randomNumber * -1 : randomNumber) *
+                  100) %
+                4
+              }
+              from={v.from}
+              onClick={() => {
+                setCardIdx(idx);
+              }}
+            >
+              {v.description}
+            </Card>
+          );
+        })}
       </Grid>
     </ContentsWrapper>
-
   );
 };
 
