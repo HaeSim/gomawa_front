@@ -9,8 +9,10 @@ import Modal from 'components/Modal';
 type Props = {};
 
 const Contents = (props: Props) => {
-  const { isLoading, error, data } = useQuery(['notionData'], getNotionCards);
-
+  const { isLoading, error, data } = useQuery(['notionData', ''], (context) =>
+    getNotionCards(context),
+  );
+  
   const [open, openModal, closeModal] = useModal();
   const [cardIdx, setCardIdx] = useState(-1);
 
@@ -27,24 +29,24 @@ const Contents = (props: Props) => {
         {open && data[cardIdx].description}
       </Modal>
       <Grid>
-        {tempCardData.map((v, idx) => {
-          return (
-            <Card
-              key={v.title}
-              title={v.title}
-              createdDate={v.createdDate}
-              background={v.background}
-              rotate={v.rotate}
-              onClick={() => {
-                setCardIdx(idx);
-              }}
-            >
-              {v.children}
-            </Card>
-          );
-        })}
+        {data?.map((v, idx) => {
+            return (
+              <Card
+                key={v.id}
+                title={v.title}
+                createAt={v.createAt}
+                background={v.background}
+                rotate={v.rotate}
+                from={v.from}
+                onClick={() => { setCardIdx(idx); }}
+              >
+                {v.description}
+              </Card>
+            );
+          })}
       </Grid>
     </ContentsWrapper>
+
   );
 };
 

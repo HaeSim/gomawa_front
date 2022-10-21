@@ -4,10 +4,11 @@ import styled from '@emotion/styled';
 export interface CardProps {
   children: React.ReactNode;
   title: string;
-  createdDate: string;
+  createAt: string;
   rotate: number;
   background?: string;
   onClick?: any;
+  from?: string;
 }
 
 const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
@@ -56,11 +57,12 @@ export const tempCardData = [
 
 const Card = ({
   title,
-  createdDate,
+  createAt,
   background = '#fff69b',
   rotate,
   onClick,
   children,
+  from = 'joonsuk',
 }: CardProps) => {
   return (
     <Container background={background} rotate={rotate}>
@@ -72,12 +74,12 @@ const Card = ({
           </ContentWrapper>
         </ClickWrapper>
         <SubInfo>
-          <span>{createdDate}</span>
+          <span>{createAt}</span>
         </SubInfo>
       </Body>
       <Footer>
         <Author>
-          by <B>joonsuk</B>
+          by <B>{from}</B>
         </Author>
       </Footer>
     </Container>
