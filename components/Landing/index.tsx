@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import CountUp from './CountUp';
 
-type Props = {};
+type Props = {
+  popupHandler: Function;
+};
 
-const Landing = (props: Props) => {
+const Landing = ({ popupHandler }: Props) => {
   const [sawoo, setSawoo] = useState(137);
   const [gamsaInsa, setGamsaInsa] = useState(3127);
 
@@ -39,6 +41,9 @@ const Landing = (props: Props) => {
             개의 감사 인사가 전달되었습니다
           </Description>
         </DescriptionWrapper>
+        <WriteButtion onClick={() => popupHandler(true)}>
+          지금 참여하기
+        </WriteButtion>
       </TextWrapper>
     </LandingWrapper>
   );
@@ -72,7 +77,7 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 
   position: absolute;
   text-align: center;
@@ -103,6 +108,27 @@ const Description = styled.h2`
   color: white;
   @media (max-width: ${(props) => props.theme.bp.md}) {
     font-size: 1.3rem;
+  }
+`;
+
+const WriteButtion = styled.button`
+  width: 100px;
+
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(76, 48, 48, 0.37);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: white;
+
+  transition: 0.5s transform;
+
+  &:hover {
+    transition: 0.5s transform;
+    transform: scale(1.1);
   }
 `;
 
