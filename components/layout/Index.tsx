@@ -6,6 +6,8 @@ import Footer from './Footer';
 import { throttle } from 'lodash-es';
 import { useQuery } from '@tanstack/react-query';
 import { getNotionCards } from 'pages/api/notion';
+import ModalFrame from 'components/Modal/Popup/ModalFrame';
+import GettingReady from 'components/Modal/Popup/GettingReady';
 
 type Props = {
   children: React.ReactNode;
@@ -13,6 +15,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const [value, setValue] = useState('');
+  const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
 
   const { refetch } = useQuery(
     ['notionData', value],
@@ -25,6 +28,7 @@ const Layout = ({ children }: Props) => {
   );
 
   const handleClick = () => {
+    setGettingReadyModalOpen(true);
     refetch();
   };
 
@@ -81,6 +85,11 @@ const Layout = ({ children }: Props) => {
 
   return (
     <Container ref={layoutRef}>
+      {gettingReadyModalOpen && (
+        <ModalFrame setOnModal={(bool) => setGettingReadyModalOpen(bool)}>
+          <GettingReady popupHandler={setGettingReadyModalOpen} />
+        </ModalFrame>
+      )}
       <NavBar>
         <SearchBarWrapper>
           <SearchBar
@@ -91,7 +100,7 @@ const Layout = ({ children }: Props) => {
         </SearchBarWrapper>
       </NavBar>
       <Main>{children}</Main>
-      <Footer />
+      <Footer popupHandler={setGettingReadyModalOpen} />
     </Container>
   );
 };
