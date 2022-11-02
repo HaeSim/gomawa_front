@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { getNotionCards } from 'pages/api/notion';
 import useModal from 'Hooks/useModal';
 import Modal from 'components/Modal';
+import Loading from './Loading';
 
 type Props = {};
 const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
@@ -23,14 +24,12 @@ const Contents = (props: Props) => {
     }
   }, [cardIdx, openModal]);
 
-  if (isLoading) return <div>Loading..</div>;
   return (
     <ContentsWrapper>
       <Modal open={open} onClose={closeModal}>
         {open && data[cardIdx].description}
       </Modal>
       <Grid>
-        {console.log('check :', data)}
         {data?.map((v, idx) => {
           const randomNumber = Math.random();
           return (
@@ -55,6 +54,7 @@ const Contents = (props: Props) => {
           );
         })}
       </Grid>
+      {isLoading ? <Loading /> : ''}
     </ContentsWrapper>
   );
 };
@@ -66,7 +66,7 @@ const ContentsWrapper = styled.section`
   min-height: 100vh;
   height: fit-content;
 
-  background-color: white;
+  background-color: beige;
 
   padding: 0 2rem;
 `;
@@ -75,8 +75,7 @@ const ContentsWrapper = styled.section`
 const Grid = styled.div`
   display: grid;
   padding-top: 8rem;
-  gap: 1rem;
-  background-color: beige;
+  gap: 1.5rem;
 
   grid-template-columns: repeat(5, 1fr);
 
