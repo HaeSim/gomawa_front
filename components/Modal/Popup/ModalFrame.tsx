@@ -1,7 +1,8 @@
 import React from 'react';
-import ModalPortal from './ModalPortal';
+
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import ModalPortal from '../ModalPortal';
 
 type Props = {
   children: any;

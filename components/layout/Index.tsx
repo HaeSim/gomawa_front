@@ -6,8 +6,8 @@ import Footer from './Footer';
 import { throttle } from 'lodash-es';
 import { useQuery } from '@tanstack/react-query';
 import { getNotionCards } from 'pages/api/notion';
-import ModalFrame from 'components/Popup/ModalFrame';
-import GettingReady from 'components/Popup/GettingReady';
+import ModalFrame from 'components/Modal/Popup/ModalFrame';
+import GettingReady from 'components/Modal/Popup/GettingReady';
 
 type Props = {
   children: React.ReactNode;
