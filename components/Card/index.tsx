@@ -143,10 +143,11 @@ const Content = styled.p`
   line-height: 1.5;
   height: 5rem;
   display: -webkit-box;
-  -webkit-line-clamp: 5; // 5번째 줄부터 ellipsis 적용
+  -webkit-line-clamp: 4; // n번째 줄부터 ellipsis 적용
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* color: #333333; */
   color: #495057;
 `;
 

@@ -11,12 +11,16 @@ type Props = {};
 const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
 
 const Contents = (props: Props) => {
-  const { isLoading, error, data } = useQuery(['notionData', ''], (context) =>
-    getNotionCards(context),
-  );
+  const {
+    isLoading,
+    error,
+    data: postDataArray,
+  } = useQuery(['notionData', ''], (context) => getNotionCards(context));
 
   const [open, openModal, closeModal] = useModal();
-  const [cardIdx, setCardIdx] = useState(-1);
+  const [cardIdx, setCardIdx] = useState<number>(-1);
+  const [modalBackgroundColor, setModalBackgroundColor] =
+    useState<string>('#ffffff');
 
   useEffect(() => {
     if (cardIdx > -1) {
@@ -26,30 +30,34 @@ const Contents = (props: Props) => {
 
   return (
     <ContentsWrapper>
-      <Modal open={open} onClose={closeModal}>
-        {open && data[cardIdx].description}
+      <Modal
+        open={open}
+        onClose={closeModal}
+        backgroundColor={modalBackgroundColor}
+        title={open && `${postDataArray[cardIdx].to}님, 감사합니다!`}
+        footerText={open && postDataArray[cardIdx].from}
+      >
+        {open && postDataArray[cardIdx].description}
       </Modal>
       <Grid>
-        {data?.map((v, idx) => {
-          const randomNumber = Math.random();
+        {postDataArray?.map((post, index) => {
+          const backgroundColor = postItColorSet[index % 5];
+
           return (
             <Card
-              key={v.id}
-              title={v.title}
-              createAt={v.createAt}
-              background={postItColorSet[idx % 4]}
-              rotate={
-                ((randomNumber < 0.5 ? randomNumber * -1 : randomNumber) *
-                  100) %
-                4
-              }
-              from={v.from}
-              to={v.to}
+              key={post.id}
+              title={post.title}
+              createAt={post.createAt}
+              background={backgroundColor}
+              rotate={0}
+              from={post.from}
+              to={post.to}
               onClick={() => {
-                setCardIdx(idx);
+                setCardIdx(index);
+                setModalBackgroundColor(`${backgroundColor}f2`); // alpha 0.95 == f2
               }}
             >
-              {v.description}
+              {post.description}
             </Card>
           );
         })}
@@ -68,7 +76,7 @@ const ContentsWrapper = styled.section`
 
   background-color: beige;
 
-  padding: 0 2rem;
+  padding: 0 2rem 4rem 2rem;
 `;
 
 // 카드 느낌 보려고 임의로 만든 그리드
@@ -77,10 +85,10 @@ const Grid = styled.div`
   padding-top: 8rem;
   gap: 1.5rem;
 
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
   @media (max-width: ${(props) => props.theme.bp.lg}) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (max-width: ${(props) => props.theme.bp.md}) {
