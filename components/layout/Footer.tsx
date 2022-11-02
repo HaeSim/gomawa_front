@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from 'styles/theme';
 import Link from 'next/link';
 
-const Footer = () => {
+type Props = {
+  popupHandler: Function;
+};
+
+const Footer = ({ popupHandler }: Props) => {
   return (
     <FooterLayout>
       <FooterLeft>
@@ -28,27 +31,38 @@ const Footer = () => {
         </FooterDetail>
         <SubmitWrapper>
           <p>
-            <span>wanabe@lotte.net</span>
+            <a href='mailto:wanabe@lotte.net'>
+              <span>wanabe@lotte.net</span>
+            </a>
           </p>
         </SubmitWrapper>
       </FooterLeft>
       <FooterRight>
         <ul>
           <li>
-            <Link href='https://github.com/DeanIsDeno/gomawa_front'>
-              <UtilLink>Github</UtilLink>
+            <Link href='https://github.com/DeanIsDeno/gomawa_front' passHref>
+              <a target='_blank' rel='noopener noreferrer'>
+                <UtilLink>Github</UtilLink>
+              </a>
             </Link>
           </li>
           <li>|</li>
           <li>
-            <Link href='/test'>
-              <UtilLink>Issue</UtilLink>
+            <Link
+              href='https://github.com/DeanIsDeno/gomawa_front/issues/new'
+              passHref
+            >
+              <a target='_blank' rel='noopener noreferrer'>
+                <UtilLink>Issue</UtilLink>
+              </a>
             </Link>
           </li>
           <li>|</li>
           <li>
-            <Link href='/test'>
-              <UtilLink>서비스 이용약관</UtilLink>
+            <Link href='#FAQ' passHref>
+              <a>
+                <UtilLink onClick={() => popupHandler(true)}>FAQ</UtilLink>
+              </a>
             </Link>
           </li>
         </ul>
@@ -123,6 +137,11 @@ const FooterSns = styled.div`
 const SubmitWrapper = styled.div`
   font-size: 1rem;
   color: rgba(235, 235, 245, 0.7);
+
+  a {
+    text-decoration: none;
+    color: rgba(235, 235, 245, 0.7);
+  }
 `;
 
 const FooterRight = styled.div`
@@ -131,11 +150,13 @@ const FooterRight = styled.div`
   text-align: right;
   gap: 1rem;
 
-  > ul {
+  > ul,
+  a {
     display: flex;
     justify-content: flex-end;
     gap: 1.25rem;
 
+    text-decoration: none;
     color: white;
   }
 
