@@ -11,11 +11,11 @@ import GettingReady from 'components/Modal/Popup/GettingReady';
 
 type Props = {
   children: React.ReactNode;
+  popupHandler: Function;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, popupHandler }: Props) => {
   const [value, setValue] = useState('');
-  const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
 
   const { refetch } = useQuery(
     ['notionData', value],
@@ -28,7 +28,7 @@ const Layout = ({ children }: Props) => {
   );
 
   const handleClick = () => {
-    setGettingReadyModalOpen(true);
+    popupHandler(true);
     refetch();
   };
 
@@ -85,11 +85,6 @@ const Layout = ({ children }: Props) => {
 
   return (
     <Container ref={layoutRef}>
-      {gettingReadyModalOpen && (
-        <ModalFrame setOnModal={(bool) => setGettingReadyModalOpen(bool)}>
-          <GettingReady popupHandler={setGettingReadyModalOpen} />
-        </ModalFrame>
-      )}
       <NavBar>
         <SearchBarWrapper>
           <SearchBar
@@ -100,7 +95,7 @@ const Layout = ({ children }: Props) => {
         </SearchBarWrapper>
       </NavBar>
       <Main>{children}</Main>
-      <Footer popupHandler={setGettingReadyModalOpen} />
+      <Footer popupHandler={popupHandler} />
     </Container>
   );
 };
