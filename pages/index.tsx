@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import ChannelService from 'components/ChannelService';
 
 import Layout from 'components/layout/Index';
 import Landing from 'components/Landing';
@@ -10,6 +11,17 @@ import GettingReady from 'components/Modal/Popup/GettingReady';
 
 const Home: NextPage = () => {
   const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
+
+  useEffect(() => {
+    const channelTalk = new ChannelService();
+    channelTalk.boot({
+      pluginKey: '1889df43-432d-4200-9629-8648017307d6',
+    });
+
+    return () => {
+      channelTalk.shutdown();
+    };
+  }, []);
 
   return (
     <>
