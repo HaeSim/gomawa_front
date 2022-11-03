@@ -11,7 +11,7 @@ const ChildSuccess = ({ popupHandler }: Props) => {
         <TitleWrapper>
           <Title>준비중이예요!</Title>
         </TitleWrapper>
-        <MintImage src='images/goguma.png' alt='gummy image' />
+        <MintImage src='images/goguma_bow.png' alt='gummy image' />
         <SubTitle>빠른 시일 내에 새로운 기능으로 찾아갈게요 🥰</SubTitle>
       </ContentsWrapper>
       <ExtraLink onClick={() => popupHandler(false)}>기다릴게요!!</ExtraLink>

@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <meta
           name='image'
           property='og:image'
-          content='%PUBLIC_URL%/thumbnail.png'
+          content='%PUBLIC_URL%/goguma_bow.png'
         />
       </Head>
       {gettingReadyModalOpen && (
