@@ -18,7 +18,6 @@ const Home: NextPage = () => {
       const res = await axios.get(
         'https://cdn.channel.io/plugin/ch-plugin-web.js',
       );
-      console.log(res);
     })();
     const channelTalk = new ChannelService();
     channelTalk.boot({
