@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CountUp from './CountUp';
 
 type Props = {
-  popupHandler: Function;
+  popupHandler?: Function;
 };
 
 const Landing = ({ popupHandler }: Props) => {
