@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
-import { IoMdClose } from 'react-icons/io';
 import ModalPortal from './ModalPortal';
 import { customScrollbarStyle } from 'styles/globalStyles';
 
@@ -26,7 +25,7 @@ const Modal = ({
     if (open) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.removeProperty('overflow');
     }
   }, [open]);
 
@@ -44,7 +43,21 @@ const Modal = ({
               backgroundColor={backgroundColor}
               onClick={onClose}
             >
-              <IoMdClose size={24} />
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                strokeWidth='2'
+                stroke='currentColor'
+                fill='none'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+                <line x1='18' y1='6' x2='6' y2='18' />
+                <line x1='6' y1='6' x2='18' y2='18' />
+              </svg>
             </CloseButton>
           </ModalHead>
           <ModalBody>
@@ -73,7 +86,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   position: fixed;
   inset: 0px;
-  animation: ${fadeIn} 0.5s;
+  animation: ${fadeIn} 0.25s;
 `;
 
 const BackDrop = styled.div`
@@ -88,7 +101,7 @@ const BackDrop = styled.div`
 
   opacity: 1;
   transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  animation: ${fadeIn} 0.5s;
+  animation: ${fadeIn} 0.25s;
 `;
 
 const Wrapper = styled.div<{ backgroundColor: string }>`
@@ -99,7 +112,7 @@ const Wrapper = styled.div<{ backgroundColor: string }>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   max-width: 600px;
   transform: translate(-50%, -50%);
   background-color: ${(props) => props.backgroundColor};

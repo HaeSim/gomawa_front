@@ -55,7 +55,7 @@ const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 
-  animation: ${fadeIn} 0.5s;
+  animation: ${fadeIn} 0.25s;
 `;
 
 const ModalContainer = styled.div`
@@ -73,7 +73,7 @@ const ModalContainer = styled.div`
   text-align: right;
   z-index: 1;
 
-  animation: ${fadeIn} 0.8s;
+  animation: ${fadeIn} 0.25s;
 `;
 
 const CloseButton = styled.button`
@@ -91,7 +91,7 @@ const CloseButton = styled.button`
     transition: 1s transform;
     transform: scale(1.2);
 
-    color: #f5c1c1;
+    color: #da2a1c;
     cursor: pointer;
   }
 `;

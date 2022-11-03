@@ -75,7 +75,7 @@ const Card = ({
             <Pin />
             {/* <AiFillPushpin size={18} /> */}
           </PinWrapper>
-          <Title>{title === undefined ? `${to}님, 감사합니다!` : title}</Title>
+          <Title>{title === undefined ? `${to}님, 🍠 🙏` : title}</Title>
           <ContentWrapper>
             <Content>{children}</Content>
           </ContentWrapper>

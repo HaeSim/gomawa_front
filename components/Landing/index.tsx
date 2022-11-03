@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
+import { getNotionCards } from 'pages/api/notion';
 import React, { useState } from 'react';
+import { getUniqueCnt } from 'utils/setCalculate';
 import CountUp from './CountUp';
 
 type Props = {
@@ -8,13 +11,22 @@ type Props = {
 };
 
 const Landing = ({ popupHandler }: Props) => {
-  const [sawoo, setSawoo] = useState(137);
-  const [gamsaInsa, setGamsaInsa] = useState(3127);
+  const [employeeCount, setEmployeeCount] = useState(0);
+  const [messageCount, setMessageCount] = useState(0);
+
+  useQuery(['notionData', ''], (context) => getNotionCards(context), {
+    refetchOnWindowFocus: false,
+    enabled: false,
+    onSuccess: (data) => {
+      setEmployeeCount(getUniqueCnt(data));
+      setMessageCount(data.length);
+    },
+  });
 
   return (
     <LandingWrapper>
       <Video autoPlay loop muted playsInline>
-        <source src='video/landing_tower.mp4' type='video/mp4' />
+        <source src='video/landing_ldcc.mp4' type='video/mp4' />
         <source src='video/landing_tower.webm' type='video/webm' />
         Sorry, your browser doesn't support embedded videos.
       </Video>
@@ -25,7 +37,7 @@ const Landing = ({ popupHandler }: Props) => {
           <Description>
             지금까지{' '}
             <CountUp
-              end={sawoo}
+              end={employeeCount}
               fontSize={2.7}
               fontWeight={700}
               color='#ecff46'
@@ -34,7 +46,7 @@ const Landing = ({ popupHandler }: Props) => {
           </Description>
           <Description>
             <CountUp
-              end={gamsaInsa}
+              end={messageCount}
               fontSize={2.7}
               fontWeight={700}
               color='#ecff46'
