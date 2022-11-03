@@ -18,7 +18,7 @@ const NavBar = ({ children }: NavBarProps) => {
           padding: '10px 20px',
         }}
       >
-        <img src='/logo.png' alt='logo' />
+        <img src='/logo.png' alt='logo' width={70} height={70} />
       </a>
       {children}
     </Header>
