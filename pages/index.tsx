@@ -45,11 +45,7 @@ const Home: NextPage = () => {
           property='og:description'
           content='고구맙습니다. 고마운 사우에게 감사인사를 전해보세요:)'
         />
-        <meta
-          name='image'
-          property='og:image'
-          content='images/goguma_bow.png'
-        />
+        <meta name='image' property='og:image' content='images/thumbnail.png' />
       </Head>
       {gettingReadyModalOpen && (
         <ModalFrame

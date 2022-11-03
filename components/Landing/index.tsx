@@ -13,10 +13,9 @@ const Landing = ({ popupHandler }: Props) => {
 
   return (
     <LandingWrapper>
-      <Video autoPlay loop muted playsInline poster='images/landing_poster.png'>
-        <source src='video/landing_tower.mp4' type='video/webm' />
+      <Video autoPlay loop muted playsInline>
+        <source src='video/landing_tower.mp4' type='video/mp4' />
         <source src='video/landing_tower.webm' type='video/webm' />
-        <source src='video/landing.webm' type='video/webm' />
         Sorry, your browser doesn't support embedded videos.
       </Video>
       <DimBox />
