@@ -23,7 +23,6 @@ const Layout = ({ children, popupHandler }: Props) => {
     {
       refetchOnWindowFocus: false,
       enabled: false,
-      onSuccess: (data) => console.log('onSuccess : ', data),
     },
   );
 
@@ -41,7 +40,6 @@ const Layout = ({ children, popupHandler }: Props) => {
       const { deltaY } = e;
       const pageHeight = window.innerHeight;
       const scrollHeight = window.scrollY;
-      console.log('event!!', scrollHeight);
       if (deltaY > 0) {
         // 내릴 때
         if (scrollHeight >= scrollTop && scrollHeight < pageHeight) {

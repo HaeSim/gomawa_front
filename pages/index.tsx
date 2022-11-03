@@ -8,11 +8,18 @@ import Landing from 'components/Landing';
 import Contents from 'components/Contents';
 import ModalFrame from 'components/Modal/Popup/ModalFrame';
 import GettingReady from 'components/Modal/Popup/GettingReady';
+import axios from 'axios';
 
 const Home: NextPage = () => {
   const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
 
   useEffect(() => {
+    (async () => {
+      const res = await axios.get(
+        'https://cdn.channel.io/plugin/ch-plugin-web.js',
+      );
+      console.log(res);
+    })();
     const channelTalk = new ChannelService();
     channelTalk.boot({
       pluginKey: '1889df43-432d-4200-9629-8648017307d6',
