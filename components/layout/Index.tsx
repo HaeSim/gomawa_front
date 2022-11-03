@@ -108,8 +108,8 @@ const Container = styled.div`
 const Main = styled.main``;
 
 const SearchBarWrapper = styled.div`
-  max-width: 1000px;
-  width: 50%;
+  max-width: 720px;
+  width: 100%;
 `;
 
 export default Layout;

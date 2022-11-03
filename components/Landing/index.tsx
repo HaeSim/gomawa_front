@@ -112,7 +112,7 @@ const Description = styled.h2`
 `;
 
 const WriteButtion = styled.button`
-  width: 100px;
+  width: 120px;
 
   padding: 10px;
   background: rgba(255, 255, 255, 0.05);

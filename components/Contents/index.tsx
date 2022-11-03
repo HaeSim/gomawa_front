@@ -22,47 +22,46 @@ const Contents = (props: Props) => {
   const [modalBackgroundColor, setModalBackgroundColor] =
     useState<string>('#ffffff');
 
-  useEffect(() => {
-    if (cardIdx > -1) {
-      openModal();
-    }
-  }, [cardIdx, openModal]);
-
   return (
     <ContentsWrapper>
       <Modal
         open={open}
         onClose={closeModal}
         backgroundColor={modalBackgroundColor}
-        title={open && `${postDataArray[cardIdx].to}님, 감사합니다!`}
+        title={open && `${postDataArray[cardIdx].to}님, 고구맙습니다!`}
         footerText={open && postDataArray[cardIdx].from}
       >
         {open && postDataArray[cardIdx].description}
       </Modal>
-      <Grid>
-        {postDataArray?.map((post, index) => {
-          const backgroundColor = postItColorSet[index % 5];
 
-          return (
-            <Card
-              key={post.id}
-              title={post.title}
-              createAt={post.createAt}
-              background={backgroundColor}
-              rotate={0}
-              from={post.from}
-              to={post.to}
-              onClick={() => {
-                setCardIdx(index);
-                setModalBackgroundColor(`${backgroundColor}f2`); // alpha 0.95 == f2
-              }}
-            >
-              {post.description}
-            </Card>
-          );
-        })}
-      </Grid>
-      {isLoading ? <Loading /> : ''}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Grid>
+          {postDataArray?.map((post, index) => {
+            const backgroundColor = postItColorSet[index % 5];
+
+            return (
+              <Card
+                key={post.id}
+                title={post.title}
+                createAt={post.createAt}
+                background={backgroundColor}
+                rotate={0}
+                from={post.from}
+                to={post.to}
+                onClick={() => {
+                  setCardIdx(index);
+                  setModalBackgroundColor(backgroundColor); // alpha 0.95 == f2
+                  openModal();
+                }}
+              >
+                {post.description}
+              </Card>
+            );
+          })}
+        </Grid>
+      )}
     </ContentsWrapper>
   );
 };
@@ -70,22 +69,47 @@ const Contents = (props: Props) => {
 export default Contents;
 
 const ContentsWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+
   position: relative;
   min-height: 100vh;
   height: fit-content;
-
-  background-color: beige;
-
-  padding: 0 2rem 4rem 2rem;
+  background-color: transparent;
+  padding: 8rem 1rem 4rem 1rem;
 `;
 
-// 카드 느낌 보려고 임의로 만든 그리드
 const Grid = styled.div`
   display: grid;
-  padding-top: 8rem;
-  gap: 1.5rem;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: tan solid 1.5rem;
+  border-top: #bda27e solid 1.5rem;
+  border-left: #b19876 solid 1.5rem;
+  border-bottom: #c9ad86 solid 1.5rem;
 
-  grid-template-columns: repeat(4, 1fr);
+  box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782,
+    0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+  background-image: radial-gradient(
+      circle at left 30%,
+      rgba(34, 34, 34, 0.3),
+      rgba(34, 34, 34, 0.3) 80px,
+      rgba(34, 34, 34, 0.5) 100px,
+      rgba(51, 51, 51, 0.5) 160px,
+      rgba(51, 51, 51, 0.5)
+    ),
+    linear-gradient(
+      215deg,
+      transparent,
+      transparent 100px,
+      #222 260px,
+      #222 320px,
+      transparent
+    ),
+    radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
+  background-color: #333;
+
+  grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: ${(props) => props.theme.bp.lg}) {
     grid-template-columns: repeat(3, 1fr);
