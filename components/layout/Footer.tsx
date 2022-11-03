@@ -32,7 +32,7 @@ const Footer = ({ popupHandler }: Props) => {
         <SubmitWrapper>
           <p>
             <a href='mailto:wanabe@lotte.net'>
-              <span>wanabe@lotte.net</span>
+              <span>wannabe@lotte.net</span>
             </a>
           </p>
         </SubmitWrapper>
@@ -74,7 +74,7 @@ const Footer = ({ popupHandler }: Props) => {
           <p>
             <span>
               사업자등록번호 : 687-81-00785 | 대표이사 : 노준형 | 08500 &copy;
-              All Rights Reservd, 2022 LDCC JuniorBoard
+              All Rights Reserved, 2022 LDCC JuniorBoard
             </span>
           </p>
         </FooterDetail>
