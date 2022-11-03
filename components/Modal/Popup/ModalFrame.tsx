@@ -91,7 +91,7 @@ const CloseButton = styled.button`
     transition: 1s transform;
     transform: scale(1.2);
 
-    color: #f5c1c1;
+    color: #da2a1c;
     cursor: pointer;
   }
 `;
