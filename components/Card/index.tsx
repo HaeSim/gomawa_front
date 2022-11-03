@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { AiFillPushpin } from 'react-icons/ai';
+import Pin from './Pin';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -69,6 +71,10 @@ const Card = ({
     <Container background={background} rotate={rotate}>
       <Body>
         <ClickWrapper onClick={onClick}>
+          <PinWrapper>
+            <Pin />
+            {/* <AiFillPushpin size={18} /> */}
+          </PinWrapper>
           <Title>{title === undefined ? `${to}님, 감사합니다!` : title}</Title>
           <ContentWrapper>
             <Content>{children}</Content>
@@ -90,6 +96,7 @@ const Card = ({
 const Container = styled.div<{ background?: string; rotate: number }>`
   /* width: 20rem; */
   width: 100%;
+  max-width: 320px;
   border-radius: 0px;
   box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
   transition: box-shadow 0.25s ease-in 0s, transform 0.2s ease-in 0s;
@@ -102,8 +109,9 @@ const Container = styled.div<{ background?: string; rotate: number }>`
     props.background ? props.background : '#ffffff'};
 
   transform: rotate(${(props) => props.rotate}deg);
+  transition: transform 0.25s;
   &:hover {
-    transform: rotate(0);
+    transform: rotate(0) translateY(-4px);
   }
 `;
 
@@ -179,6 +187,12 @@ const B = styled.b`
   font-weight: 600;
   padding-left: 0.3rem;
   color: #000000;
+`;
+
+const PinWrapper = styled.div`
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
 `;
 
 export default Card;

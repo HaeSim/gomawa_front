@@ -122,6 +122,7 @@ const Input = styled.input`
   min-width: 0px;
   width: 100%;
   padding: 16.5px 0px 16.5px 14px;
+  text-align: center;
 
   outline: none;
 `;

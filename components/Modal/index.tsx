@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 import { IoMdClose } from 'react-icons/io';
 import ModalPortal from './ModalPortal';
+import { customScrollbarStyle } from 'styles/globalStyles';
 
 export interface ModalProps {
   children: React.ReactNode;
@@ -20,11 +22,20 @@ const Modal = ({
   footerText,
   backgroundColor = '#ffffff',
 }: ModalProps) => {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [open]);
+
   if (!open) return null;
+
   return (
     <ModalPortal>
       <Container role='dialog' onClick={(e) => e.stopPropagation()}>
-        <BackDrop />
+        <BackDrop onClick={onClose} />
         <Wrapper backgroundColor={backgroundColor}>
           <ModalHead>
             <Title>{title}</Title>
@@ -50,9 +61,19 @@ const Modal = ({
   );
 };
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   position: fixed;
   inset: 0px;
+  animation: ${fadeIn} 0.5s;
 `;
 
 const BackDrop = styled.div`
@@ -67,6 +88,7 @@ const BackDrop = styled.div`
 
   opacity: 1;
   transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  animation: ${fadeIn} 0.5s;
 `;
 
 const Wrapper = styled.div<{ backgroundColor: string }>`
@@ -77,7 +99,7 @@ const Wrapper = styled.div<{ backgroundColor: string }>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(100% - 120px);
+  width: calc(100% - 100px);
   max-width: 600px;
   transform: translate(-50%, -50%);
   background-color: ${(props) => props.backgroundColor};
@@ -86,26 +108,36 @@ const Wrapper = styled.div<{ backgroundColor: string }>`
   border-bottom-right-radius: 15px;
   box-shadow: rgb(0 0 0 / 20%) 0px 11px 15px -7px,
     rgb(0 0 0 / 14%) 0px 24px 38px 3px, rgb(0 0 0 / 12%) 0px 9px 46px 8px;
-  padding: 16px 32px;
 `;
 
 const ModalHead = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem 0 2rem;
 `;
 
 const Title = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;
+
+  @media (max-width: ${(props) => props.theme.bp.sm}) {
+    font-size: 1rem;
+  }
 `;
 
 const ModalBody = styled.div`
   flex: 1 1 0%;
+  padding: 0 2rem;
+  max-height: 300px;
+  overflow-y: auto;
+
+  ${customScrollbarStyle}
 `;
 
 const ModalFooter = styled.div`
-  padding: 0.5rem 0;
+  border-top: 1px solid #868e96;
+  padding: 1rem 2rem 1rem 2rem;
 `;
 
 const By = styled.p`
