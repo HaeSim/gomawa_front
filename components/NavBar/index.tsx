@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import logo from 'public/logo.png';
+import Image from 'next/image';
 
 export interface NavBarProps {
   children: React.ReactNode;
@@ -18,7 +20,14 @@ const NavBar = ({ children }: NavBarProps) => {
           padding: '10px 20px',
         }}
       >
-        <img src='/logo.png' alt='logo' width={70} height={70} />
+        <Image
+          src={logo}
+          alt='logo'
+          placeholder='blur'
+          width={70}
+          height={70}
+          objectFit='contain'
+        />
       </a>
       {children}
     </Header>

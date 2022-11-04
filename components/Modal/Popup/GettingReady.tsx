@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import gettingReadyImage from 'public/images/goguma_bow.png';
 
 type Props = {
   popupHandler: Function;
@@ -11,22 +13,20 @@ const ChildSuccess = ({ popupHandler }: Props) => {
         <TitleWrapper>
           <Title>준비중이예요!</Title>
         </TitleWrapper>
-        <MintImage src='images/goguma_bow.png' alt='gummy image' />
+        <Image
+          src={gettingReadyImage}
+          alt='getting Ready'
+          placeholder='blur'
+          width={180}
+          height={180}
+          objectFit='contain'
+        />
         <SubTitle>빠른 시일 내에 새로운 기능으로 찾아갈게요 🥰</SubTitle>
       </ContentsWrapper>
       <ExtraLink onClick={() => popupHandler(false)}>기다릴게요!!</ExtraLink>
     </SuccessInfoWrapper>
   );
 };
-
-export const Badge = styled.img`
-  position: absolute;
-  top: -40px;
-
-  width: 73px;
-  height: 73px;
-  object-fit: contain;
-`;
 
 const SuccessInfoWrapper = styled.div`
   position: relative;
@@ -39,13 +39,6 @@ const SuccessInfoWrapper = styled.div`
 
   width: 100%;
   height: 100%;
-`;
-
-const MintImage = styled.img`
-  width: 180px;
-  height: 180px;
-
-  object-fit: contain;
 `;
 
 const TitleWrapper = styled.div`
