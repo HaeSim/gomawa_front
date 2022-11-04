@@ -5,6 +5,7 @@ import { getNotionCards } from 'pages/api/notion';
 import React, { useState } from 'react';
 import { getUniqueCnt } from 'utils/setCalculate';
 import CountUp from './CountUp';
+import * as gtag from '../../lib/gtag';
 
 type Props = {
   popupHandler?: Function;
@@ -54,7 +55,15 @@ const Landing = ({ popupHandler }: Props) => {
             개의 감사 인사가 전달되었습니다
           </Description>
         </DescriptionWrapper>
-        <WriteButtion onClick={() => popupHandler(true)}>
+        <WriteButtion
+          onClick={() => {
+            gtag.event({
+              category: 'Card',
+              action: 'write_card',
+            });
+            popupHandler(true);
+          }}
+        >
           지금 참여하기
         </WriteButtion>
       </TextWrapper>

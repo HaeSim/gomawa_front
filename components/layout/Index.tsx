@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from '@emotion/styled';
-import SearchBar from 'components/SearchBar';
-import NavBar from 'components/NavBar';
-import Footer from './Footer';
 import { throttle } from 'lodash-es';
 import { useQuery } from '@tanstack/react-query';
 import { getNotionCards } from 'pages/api/notion';
-import ModalFrame from 'components/Modal/Popup/ModalFrame';
-import GettingReady from 'components/Modal/Popup/GettingReady';
+import * as gtag from '../../lib/gtag';
+import SearchBar from 'components/SearchBar';
+import Footer from './Footer';
+import NavBar from 'components/NavBar';
 
 type Props = {
   children: React.ReactNode;
@@ -27,6 +26,11 @@ const Layout = ({ children, popupHandler }: Props) => {
   );
 
   const handleClick = () => {
+    gtag.event({
+      category: 'Search',
+      action: 'click_Search',
+      value: value,
+    });
     popupHandler(true);
     refetch();
   };
