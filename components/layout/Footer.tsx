@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import * as gtag from '../../lib/gtag';
 
 type Props = {
   popupHandler: Function;
@@ -61,7 +62,18 @@ const Footer = ({ popupHandler }: Props) => {
           <li>
             <Link href='#FAQ' passHref>
               <a>
-                <UtilLink onClick={() => popupHandler(true)}>FAQ</UtilLink>
+                <UtilLink
+                  onClick={() => {
+                    gtag.event({
+                      category: 'Card',
+                      action: 'write_card',
+                    });
+
+                    popupHandler(true);
+                  }}
+                >
+                  FAQ
+                </UtilLink>
               </a>
             </Link>
           </li>

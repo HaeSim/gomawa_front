@@ -6,6 +6,7 @@ import { getNotionCards } from 'pages/api/notion';
 import useModal from 'Hooks/useModal';
 import Modal from 'components/Modal';
 import Loading from './Loading';
+import * as gtag from '../../lib/gtag';
 
 type Props = {};
 const postItColorSet = ['#f6c2d9', '#fff69b', '#bcdfc9', '#a1c8e9', '#e4dae2'];
@@ -51,6 +52,11 @@ const Contents = (props: Props) => {
                 from={post.from}
                 to={post.to}
                 onClick={() => {
+                  gtag.event({
+                    category: 'Card',
+                    action: 'veiw_card',
+                    label: post.to,
+                  });
                   setCardIdx(index);
                   setModalBackgroundColor(backgroundColor); // alpha 0.95 == f2
                   openModal();
