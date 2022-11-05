@@ -50,7 +50,7 @@ const Footer = ({ popupHandler }: Props) => {
           <li>|</li>
           <li>
             <Link
-              href='https://github.com/DeanIsDeno/gomawa_front/issues/new'
+              href='https://github.com/HaeSim/gomawa_front/issues/new/choose'
               passHref
             >
               <a target='_blank' rel='noopener noreferrer'>
