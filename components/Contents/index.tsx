@@ -115,7 +115,7 @@ const Grid = styled.div`
     radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
   background-color: #333;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
   @media (max-width: ${(props) => props.theme.bp.lg}) {
     grid-template-columns: repeat(3, 1fr);
