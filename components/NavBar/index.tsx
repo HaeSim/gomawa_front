@@ -16,7 +16,6 @@ const NavBar = ({ children }: NavBarProps) => {
         style={{
           overflow: 'hidden',
           display: 'inline-block',
-          height: '70px',
           padding: '10px 20px',
         }}
       >
