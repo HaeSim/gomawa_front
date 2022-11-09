@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import gettingReadyImage from 'public/images/goguma_bow.png';
+import eventImage from 'public/images/event.png';
 
 type Props = {
   popupHandler: Function;
@@ -18,10 +18,10 @@ const EventPopup = ({ popupHandler }: Props) => {
   return (
     <Container>
       <Image
-        src={gettingReadyImage}
-        alt='머그컵 팝업'
-        width={300}
-        height={300}
+        src={eventImage}
+        alt='Event Image'
+        // width={300}
+        // height={300}
         objectFit='contain'
       />
       {/* <Button>X 오늘 하루 보지 않기</Button> */}
@@ -34,9 +34,9 @@ const Container = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  padding-top: 51px;
+  padding-top: 24px;
 
   width: 100%;
   height: 100%;
@@ -47,9 +47,9 @@ const ExtraLink = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 360px;
-  height: 36px;
-  background-color: gray;
+  width: 100%;
+  height: 42px;
+  background-color: #da2a1c;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -59,7 +59,7 @@ const ExtraLink = styled.div`
 
   transition: background-color 0.25s;
   :hover {
-    background-color: #363636;
+    background-color: #db5a51;
   }
 `;
 

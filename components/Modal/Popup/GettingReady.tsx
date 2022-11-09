@@ -86,7 +86,7 @@ const ExtraLink = styled.div`
   vertical-align: middle;
   font-size: 20px;
   :hover {
-    background-color: #da2a1c;
+    background-color: #db5a51;
   }
 `;
 

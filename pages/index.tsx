@@ -9,6 +9,7 @@ import Contents from 'components/Contents';
 import ModalFrame from 'components/Modal/Popup/ModalFrame';
 import GettingReady from 'components/Modal/Popup/GettingReady';
 import EventPopup from 'components/Modal/Popup/EventPopup';
+import EventModalFrame from 'components/Modal/Popup/EventModalFrame';
 
 const Home: NextPage = () => {
   const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
@@ -64,9 +65,11 @@ const Home: NextPage = () => {
         </ModalFrame>
       )}
       {eventModalOpen && (
-        <ModalFrame setOnModal={(open: boolean) => setEventModalOpen(open)}>
+        <EventModalFrame
+          setOnModal={(open: boolean) => setEventModalOpen(open)}
+        >
           <EventPopup popupHandler={setEventModalOpen} />
-        </ModalFrame>
+        </EventModalFrame>
       )}
       <Layout popupHandler={setGettingReadyModalOpen}>
         <Landing popupHandler={setGettingReadyModalOpen} />
