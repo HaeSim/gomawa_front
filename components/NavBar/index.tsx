@@ -10,24 +10,16 @@ export interface NavBarProps {
 const NavBar = ({ children }: NavBarProps) => {
   return (
     <Header>
-      <a
-        href='#'
-        onClick={(e) => e.preventDefault()}
-        style={{
-          overflow: 'hidden',
-          display: 'inline-block',
-          padding: '10px 20px',
-        }}
-      >
+      <Anchor href='#' onClick={(e) => e.preventDefault()}>
         <Image
           src={logo}
           alt='logo'
           placeholder='blur'
-          width={70}
-          height={70}
+          // width={70}
+          // height={70}
           objectFit='contain'
         />
-      </a>
+      </Anchor>
       {children}
     </Header>
   );
@@ -42,6 +34,20 @@ const Header = styled.header`
   padding: 1rem 2rem;
   box-sizing: border-box;
   z-index: 9999;
+`;
+
+const Anchor = styled.a`
+  overflow: hidden;
+  display: inline-block;
+  padding: 10px 20px;
+
+  @media (max-width: ${(props) => props.theme.bp.sm}) {
+    position: absolute;
+    width: 36px;
+    z-index: 999;
+    top: 18px;
+    left: 26px;
+  }
 `;
 
 export default NavBar;

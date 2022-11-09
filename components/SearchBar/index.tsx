@@ -125,6 +125,10 @@ const Input = styled.input`
   text-align: center;
 
   outline: none;
+
+  @media (max-width: ${(props) => props.theme.bp.sm}) {
+    padding-left: 44px;
+  }
 `;
 
 const Icon = styled(BiSearch)``;

@@ -8,9 +8,12 @@ import Landing from 'components/Landing';
 import Contents from 'components/Contents';
 import ModalFrame from 'components/Modal/Popup/ModalFrame';
 import GettingReady from 'components/Modal/Popup/GettingReady';
+import EventPopup from 'components/Modal/Popup/EventPopup';
+import EventModalFrame from 'components/Modal/Popup/EventModalFrame';
 
 const Home: NextPage = () => {
   const [gettingReadyModalOpen, setGettingReadyModalOpen] = useState(false);
+  const [eventModalOpen, setEventModalOpen] = useState(false);
 
   useEffect(() => {
     const channelTalk = new ChannelService();
@@ -21,6 +24,20 @@ const Home: NextPage = () => {
     return () => {
       channelTalk.shutdown();
     };
+  }, []);
+
+  useEffect(() => {
+    const expiryDate = Number(localStorage.getItem('expiryDate'));
+    const visitDate = new Date().getDate();
+
+    if (expiryDate) {
+      if (expiryDate === visitDate) {
+        localStorage.removeItem('expiryDate');
+        setEventModalOpen(true);
+      }
+    } else {
+      setEventModalOpen(true);
+    }
   }, []);
 
   return (
@@ -46,6 +63,13 @@ const Home: NextPage = () => {
         >
           <GettingReady popupHandler={setGettingReadyModalOpen} />
         </ModalFrame>
+      )}
+      {eventModalOpen && (
+        <EventModalFrame
+          setOnModal={(open: boolean) => setEventModalOpen(open)}
+        >
+          <EventPopup popupHandler={setEventModalOpen} />
+        </EventModalFrame>
       )}
       <Layout popupHandler={setGettingReadyModalOpen}>
         <Landing popupHandler={setGettingReadyModalOpen} />
