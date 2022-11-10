@@ -54,8 +54,9 @@ const Contents = (props: Props) => {
                 onClick={() => {
                   gtag.event({
                     category: 'Card',
-                    action: 'veiw_card',
-                    label: post.to,
+                    action: 'view_card',
+                    label: 'to',
+                    value: post.to,
                   });
                   setCardIdx(index);
                   setModalBackgroundColor(backgroundColor); // alpha 0.95 == f2
