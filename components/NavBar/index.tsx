@@ -14,7 +14,6 @@ const NavBar = ({ children }: NavBarProps) => {
         <Image
           src={logo}
           alt='logo'
-          placeholder='blur'
           // width={70}
           // height={70}
           objectFit='contain'
