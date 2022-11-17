@@ -9,8 +9,11 @@ type Props = {
 
 const EventPopup = ({ popupHandler }: Props) => {
   const doNotSeeToday = () => {
-    const expiryDate = new Date().getDate() + 1;
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
 
+    const expiryDate = tomorrow.getTime();
     localStorage.setItem('expiryDate', String(expiryDate));
     popupHandler(false);
   };
