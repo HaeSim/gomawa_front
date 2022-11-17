@@ -28,10 +28,10 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const expiryDate = Number(localStorage.getItem('expiryDate'));
-    const visitDate = new Date().getDate();
+    const visitDate = new Date().getTime();
 
     if (expiryDate) {
-      if (expiryDate === visitDate) {
+      if (expiryDate <= visitDate) {
         localStorage.removeItem('expiryDate');
         setEventModalOpen(true);
       }
