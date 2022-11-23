@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 
 // const uri = process.env.MONGODB_URI as string; // your mongodb connection string
-const uri = 'mongodb+srv://gomawa:Wkwkdaus1!@cluster0.4x1erhp.mongodb.net/test'; // your mongodb connection string
+const uri =
+  'mongodb+srv://admin:Wkwkdaus1!@cluster0.rgwepib.mongodb.net/gomawa'; // your mongodb connection string
 const options = {};
 
 let client;
